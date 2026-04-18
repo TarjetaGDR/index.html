@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lic. Guillermo Díaz Ramírez | Abogado</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        law: {
+                            gold: '#c5a059',
+                            dark: '#020617',
+                            card: '#0f172a'
+                        }
+                    }
+                }
+            }
+        };
+    </script>
+    
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Montserrat:wght@200;400;600&display=swap');
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: #020617;
+            background-image: radial-gradient(rgba(197, 160, 89, 0.05) 1px, transparent 0);
+            background-size: 40px 40px;
+        }
+
+        .glass-premium {
+            background: rgba(15, 23, 42, 0.85);
+            backdrop-filter: blur(25px);
+            -webkit-backdrop-filter: blur(25px);
+            border: 1px solid rgba(197, 160, 89, 0.15);
+            position: relative;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.8);
+        }
+
+        .glass-premium::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            border-radius: 3rem;
+            padding: 1px;
+            background: linear-gradient(135deg, rgba(197, 160, 89, 0.3), transparent, rgba(197, 160, 89, 0.1));
+            mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            mask-composite: exclude;
+            -webkit-mask-composite: destination-out;
+            pointer-events: none;
+        }
+
+        .serif-text {
+            font-family: 'Playfair Display', serif;
+        }
+
+        .letter-spaced {
+            letter-spacing: 0.5em;
+        }
+
+        .action-hover {
+            transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .action-hover:hover {
+            background: rgba(197, 160, 89, 0.08);
+            border-color: rgba(197, 160, 89, 0.3);
+            transform: translateY(-2px);
+        }
+
+        .gold-gradient-btn {
+            background: linear-gradient(135deg, #c5a059 0%, #f1d592 50%, #c5a059 100%);
+            transition: all 0.3s ease;
+        }
+
+        .logo-glow {
+            filter: drop-shadow(0 0 10px rgba(197, 160, 89, 0.3));
+        }
+
+        .modal-overlay {
+            background: rgba(2, 6, 23, 0.85);
+            backdrop-filter: blur(12px);
+            transition: all 0.3s ease;
+        }
+
+        .animate-reveal {
+            animation: reveal 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        @keyframes reveal {
+            from { opacity: 0; transform: translateY(10px) scale(0.95); }
+            to { opacity: 1; transform: translateY(0) scale(1); }
+        }
+    </style>
+</head>
+<body class="min-h-screen flex items-center justify-center p-4 py-8">
+
+    <!-- MODAL PARA ESPECIALIDADES -->
+    <div id="specialtyModal" class="fixed inset-0 z-50 flex items-center justify-center p-6 hidden">
+        <div class="absolute inset-0 modal-overlay" onclick="closeModal()"></div>
+        <div class="relative w-full max-w-xs glass-premium rounded-[2.5rem] p-8 text-center animate-reveal border-t border-law-gold/30">
+            <button onclick="closeModal()" class="absolute top-5 right-5 text-white/30 hover:text-law-gold transition-colors">
+                <i data-lucide="x" class="w-6 h-6"></i>
+            </button>
+            <div id="modalIcon" class="mb-5 flex justify-center text-law-gold drop-shadow-[0_0_8px_rgba(197,160,89,0.4)]"></div>
+            <h3 id="modalTitle" class="serif-text text-2xl text-white mb-6 border-b border-law-gold/10 pb-4"></h3>
+            <ul id="modalList" class="text-[11px] text-gray-300 space-y-3 text-left list-none pl-0"></ul>
+            <button onclick="closeModal()" class="mt-8 w-full text-[10px] text-law-dark bg-law-gold py-3 rounded-xl font-black uppercase tracking-[0.2em] active:scale-95 transition-transform">Cerrar</button>
+        </div>
+    </div>
+
+    <div class="w-full max-w-sm glass-premium rounded-[3rem] overflow-hidden animate-reveal">
+        <div class="h-1 gold-gradient-btn opacity-60"></div>
+
+        <div class="p-6 text-center">
+            
+            <!-- LOGO -->
+            <div class="mb-4 flex flex-col items-center">
+                <div class="relative">
+                    <div class="absolute inset-0 bg-law-gold/10 blur-[50px] rounded-full scale-[1.3]"></div>
+                    <svg viewBox="0 0 100 100" class="w-32 h-32 relative logo-glow" xmlns="http://www.w3.org/2000/svg">
+                        <defs>
+                            <linearGradient id="goldRelief" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" style="stop-color:#8e6d31" />
+                                <stop offset="25%" style="stop-color:#c5a059" />
+                                <stop offset="50%" style="stop-color:#fef0ca" />
+                                <stop offset="75%" style="stop-color:#c5a059" />
+                                <stop offset="100%" style="stop-color:#8e6d31" />
+                            </linearGradient>
+                            <filter id="bevel">
+                                <feGaussianBlur in="SourceAlpha" stdDeviation="1.5" result="blur"/>
+                                <feSpecularLighting in="blur" surfaceScale="5" specularConstant="0.8" specularExponent="20" lighting-color="#ffffff" result="specOut">
+                                    <fePointLight x="-50" y="-100" z="200"/>
+                                </feSpecularLighting>
+                                <feComposite in="specOut" in2="SourceAlpha" operator="in" result="specOut"/>
+                                <feComposite in="SourceGraphic" in2="specOut" operator="arithmetic" k1="0" k2="1" k3="1" k4="0"/>
+                            </filter>
+                        </defs>
+                        <g fill="none" stroke="url(#goldRelief)" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" filter="url(#bevel)">
+                            <path d="M52,32 C38,32 28,40 28,50 C28,60 38,68 52,68" />
+                            <path d="M52,68 L52,55 L44,55" />
+                            <path d="M52,32 C66,32 76,40 76,50 C76,60 66,68 52,68 Z" />
+                        </g>
+                    </svg>
+                </div>
+            </div>
+
+            <!-- IDENTIDAD -->
+            <div class="mb-6">
+                <h1 class="serif-text text-2xl font-semibold text-white mb-1.5 tracking-tight">Guillermo Díaz Ramírez</h1>
+                <div class="flex items-center justify-center gap-3">
+                    <div class="h-[0.5px] w-4 bg-law-gold/30"></div>
+                    <p class="letter-spaced text-[9px] text-law-gold/90 uppercase font-bold">Abogado</p>
+                    <div class="h-[0.5px] w-4 bg-law-gold/30"></div>
+                </div>
+            </div>
+
+            <!-- ESPECIALIDADES -->
+            <div class="mb-6 px-1">
+                <p class="text-[7px] text-white/30 uppercase tracking-[0.3em] mb-3">Toca una especialidad</p>
+                <div class="grid grid-cols-3 gap-2">
+                    <button onclick="openSpecialty('Civil')" class="bg-white/5 border border-white/5 p-2 rounded-xl flex flex-col items-center gap-1.5 action-hover outline-none">
+                        <i data-lucide="scale" class="w-3.5 h-3.5 text-law-gold/60"></i>
+                        <span class="text-[7.5px] text-gray-400 font-semibold uppercase tracking-tight">Civil</span>
+                    </button>
+                    <button onclick="openSpecialty('Familiar')" class="bg-white/5 border border-white/5 p-2 rounded-xl flex flex-col items-center gap-1.5 action-hover outline-none">
+                        <i data-lucide="users" class="w-3.5 h-3.5 text-law-gold/60"></i>
+                        <span class="text-[7.5px] text-gray-400 font-semibold uppercase tracking-tight">Familiar</span>
+                    </button>
+                    <button onclick="openSpecialty('Mercantil')" class="bg-white/5 border border-white/5 p-2 rounded-xl flex flex-col items-center gap-1.5 action-hover outline-none">
+                        <i data-lucide="briefcase" class="w-3.5 h-3.5 text-law-gold/60"></i>
+                        <span class="text-[7.5px] text-gray-400 font-semibold uppercase tracking-tight">Mercantil</span>
+                    </button>
+                    <button onclick="openSpecialty('Corporativo')" class="bg-white/5 border border-white/5 p-2 rounded-xl flex flex-col items-center gap-1.5 action-hover outline-none">
+                        <i data-lucide="building-2" class="w-3.5 h-3.5 text-law-gold/60"></i>
+                        <span class="text-[7.5px] text-gray-400 font-semibold uppercase tracking-tight">Corporativo</span>
+                    </button>
+                    <button onclick="openSpecialty('Amparo')" class="bg-white/5 border border-white/5 p-2 rounded-xl flex flex-col items-center gap-1.5 action-hover outline-none">
+                        <i data-lucide="shield-check" class="w-3.5 h-3.5 text-law-gold/60"></i>
+                        <span class="text-[7.5px] text-gray-400 font-semibold uppercase tracking-tight">Amparo</span>
+                    </button>
+                    <button onclick="openSpecialty('Laboral')" class="bg-white/5 border border-white/5 p-2 rounded-xl flex flex-col items-center gap-1.5 action-hover outline-none">
+                        <i data-lucide="hard-hat" class="w-3.5 h-3.5 text-law-gold/60"></i>
+                        <span class="text-[7.5px] text-gray-400 font-semibold uppercase tracking-tight">Laboral</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- BOTONES DE ACCIÓN -->
+            <div class="grid grid-cols-2 gap-3 mb-6">
+                <a href="https://wa.me/529636333087?text=Hola%20Lic.%20Guillermo%2C%20me%20gustar%C3%ADa%20agendar%20una%20cita." target="_blank" class="action-hover p-4 rounded-2xl flex flex-col items-center gap-2 relative border border-green-500/10">
+                    <div class="absolute -top-1.5 bg-green-600 text-[6.5px] text-white px-2 py-0.5 rounded-full font-bold uppercase tracking-widest shadow-lg shadow-green-900/50">Previa Cita</div>
+                    <i data-lucide="message-circle" class="w-5 h-5 text-green-500/90"></i>
+                    <span class="text-[8px] font-bold text-gray-500 uppercase tracking-widest">WhatsApp</span>
+                </a>
+                <a href="tel:2229521384" class="action-hover p-4 rounded-2xl flex flex-col items-center gap-2">
+                    <i data-lucide="phone" class="w-5 h-5 text-law-gold/80"></i>
+                    <span class="text-[8px] font-bold text-gray-500 uppercase tracking-widest">Llamar</span>
+                </a>
+                <button id="saveBtn" class="action-hover p-4 rounded-2xl flex flex-col items-center gap-2">
+                    <i data-lucide="user-plus" class="w-5 h-5 text-blue-500/80"></i>
+                    <span class="text-[8px] font-bold text-gray-500 uppercase tracking-widest">Guardar</span>
+                </button>
+                <a href="https://www.google.com/maps/search/?api=1&query=9+sur+2310+despacho+1+Chulavista+Puebla" target="_blank" class="action-hover p-4 rounded-2xl flex flex-col items-center gap-2">
+                    <i data-lucide="map-pin" class="w-5 h-5 text-red-500/80"></i>
+                    <span class="text-[8px] font-bold text-gray-500 uppercase tracking-widest">Ubicación</span>
+                </a>
+            </div>
+
+            <!-- CONTACTO -->
+            <div class="space-y-4 text-center border-t border-white/5 pt-6 mb-6">
+                <div class="grid grid-cols-2 gap-4">
+                    <div class="text-center">
+                        <p class="text-[7.5px] text-law-gold/80 letter-spaced uppercase font-bold mb-1">Celular</p>
+                        <p class="text-[11px] font-light text-white/90">963 633 3087</p>
+                    </div>
+                    <div class="text-center">
+                        <p class="text-[7.5px] text-law-gold/80 letter-spaced uppercase font-bold mb-1">Oficina</p>
+                        <p class="text-[11px] font-light text-white/90">222 952 1384</p>
+                    </div>
+                </div>
+                <div class="flex flex-col items-center">
+                    <p class="text-[7.5px] text-law-gold/80 letter-spaced uppercase font-bold mb-1">Dirección</p>
+                    <p class="text-[10px] font-light text-white/70 leading-relaxed max-w-[210px]">
+                        9 Sur 2310, Despacho 1,<br>Col. Chulavista, Puebla, Pue.
+                    </p>
+                </div>
+            </div>
+
+            <button id="shareAction" class="gold-gradient-btn w-full py-4 rounded-2xl text-law-dark font-black text-[10px] letter-spaced uppercase flex items-center justify-center gap-2 shadow-xl shadow-law-gold/5 active:scale-[0.98]">
+                <i data-lucide="share-2" class="w-4 h-4"></i>
+                Compartir Tarjeta
+            </button>
+        </div>
+        
+        <footer class="pb-6 text-center">
+            <p class="text-[7.5px] text-gray-600 letter-spaced uppercase font-medium italic tracking-[0.4em]">Seguridad y Confianza</p>
+        </footer>
+    </div>
+
+    <script>
+        const specialtyData = {
+            'Civil': {
+                icon: 'scale',
+                items: [
+                    'Cuestiones sobre propiedad',
+                    'Asociaciones Civiles',
+                    'Sociedades Civiles',
+                    'Contratos y Convenios',
+                    'Asesorías sobre Condominios',
+                    'Reglamentos habitacionales'
+                ]
+            },
+            'Familiar': {
+                icon: 'users',
+                items: [
+                    'Asesoría prematrimonial',
+                    'Convenios matrimoniales',
+                    'Divorcios',
+                    'Guarda y custodia',
+                    'Paternidad',
+                    'Sucesiones intestamentarias',
+                    'Sucesiones Testamentarias',
+                    'Asesorías testamentarias',
+                    'Cuestiones de Registro Civil'
+                ]
+            },
+            'Mercantil': {
+                icon: 'briefcase',
+                items: [
+                    'Cobranza judicial y extrajudicial',
+                    'Juicios mercantiles',
+                    'Contratos comerciales',
+                    'Títulos de crédito',
+                    'Seguros y fianzas',
+                    'Derecho concursal',
+                    'Litigio comercial'
+                ]
+            },
+            'Corporativo': {
+                icon: 'building-2',
+                items: [
+                    'Constitución de Sociedades',
+                    'Actas de Asamblea y Sesiones',
+                    'Gobierno Corporativo',
+                    'Cumplimiento Normativo (Compliance)',
+                    'Propiedad Industrial y Marcas',
+                    'Fusiones y Adquisiciones',
+                    'Auditoría Legal Empresarial'
+                ]
+            },
+            'Amparo': {
+                icon: 'shield-check',
+                items: [
+                    'Amparo Directo e Indirecto',
+                    'Suspensión del Acto Reclamado',
+                    'Recursos de Revisión y Queja',
+                    'Amparo contra Leyes Inconstitucionales',
+                    'Protección de Derechos Humanos',
+                    'Incidentes de Incumplimiento',
+                    'Defensa contra Actos de Autoridad'
+                ]
+            },
+            'Laboral': {
+                icon: 'hard-hat',
+                items: [
+                    'Despidos',
+                    'Finiquitos',
+                    'Indemnizaciones',
+                    'Asesoría integral',
+                    'Asesoría sindical'
+                ]
+            }
+        };
+
+        function openSpecialty(key) {
+            const data = specialtyData[key];
+            document.getElementById('modalTitle').innerText = key;
+            document.getElementById('modalIcon').innerHTML = `<i data-lucide="${data.icon}" class="w-10 h-10"></i>`;
+            
+            const list = document.getElementById('modalList');
+            list.innerHTML = data.items.map(item => `
+                <li class="flex items-start gap-4 py-1.5 border-b border-white/5 last:border-0">
+                    <div class="mt-1.5 w-1 h-1 rounded-full bg-law-gold flex-shrink-0"></div>
+                    <span class="leading-snug">${item}</span>
+                </li>
+            `).join('');
+            
+            document.getElementById('specialtyModal').classList.remove('hidden');
+            lucide.createIcons();
+        }
+
+        function closeModal() {
+            document.getElementById('specialtyModal').classList.add('hidden');
+        }
+
+        lucide.createIcons();
+
+        document.getElementById('saveBtn').onclick = () => {
+            const vCard = "BEGIN:VCARD\nVERSION:3.0\nFN:Lic. Guillermo Díaz Ramírez\nTITLE:Abogado\nTEL;TYPE=CELL:9636333087\nTEL;TYPE=WORK:2229521384\nADR;TYPE=WORK:;;9 Sur 2310 Despacho 1;Puebla;Chulavista;72000;Mexico\nEND:VCARD";
+            const blob = new Blob([vCard], { type: 'text/vcard' });
+            const url = window.URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'Guillermo_Diaz_Abogado.vcf';
+            a.click();
+        };
+
+        document.getElementById('shareAction').onclick = () => {
+            if (navigator.share) {
+                navigator.share({ title: 'Lic. Guillermo Díaz Ramírez', url: window.location.href });
+            } else {
+                const url = window.location.href;
+                const el = document.createElement('textarea');
+                el.value = url;
+                document.body.appendChild(el);
+                el.select();
+                document.execCommand('copy');
+                document.body.removeChild(el);
+                
+                const btn = document.getElementById('shareAction');
+                const originalText = btn.innerHTML;
+                btn.innerText = 'ENLACE COPIADO';
+                setTimeout(() => {
+                    btn.innerHTML = originalText;
+                    lucide.createIcons();
+                }, 2000);
+            }
+        };
+    </script>
+</body>
+</html>
